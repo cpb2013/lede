@@ -8,10 +8,7 @@
 name: OpenWrt-CI
 
 on:
-  schedule:
-    - cron: 0 20 * * *
-  release:
-    types: [published]
+  workflow_dispatch:
 
 jobs:
 
@@ -20,8 +17,6 @@ jobs:
     name: Build OpenWrt firmware
 
     runs-on: ubuntu-latest
-
-    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
 
@@ -100,7 +95,6 @@ jobs:
   
 
       - name: Upload release asset
-        if: github.event == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.YOURTOKEN }}
