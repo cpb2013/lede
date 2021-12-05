@@ -45,7 +45,7 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir -p ./art
-          cp -rf ./config ./art/
+          cp -f .config ./art/
           
       - name: Deliver package
         uses: actions/upload-artifact@v2
