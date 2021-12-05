@@ -1,4 +1,4 @@
-name: OpenWrt-CI
+name: genconfig
 
 on:
   workflow_dispatch:
@@ -42,6 +42,13 @@ jobs:
       - name: Generate configuration file
         run: make defconfig
 
-      - name: list file
+      - name: Prepare artifact
         run: |
-          ls
+          mkdir -p ./art
+          cp -rf ./config ./art/
+          
+      - name: Deliver package
+        uses: actions/upload-artifact@v2
+        with:
+          name: pacakge
+          path: ./art
